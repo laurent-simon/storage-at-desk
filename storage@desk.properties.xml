@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>StorageDesk Properties</comment>
+<entry key="edu.virginia.cs.storagedesk.DEBUG_LEVEL">INFO</entry>
+
+<entry key="edu.virginia.cs.storagedesk.VOLUMECONTROLLER_IP_ADDRESS">127.0.0.1</entry>
+
+<entry key="edu.virginia.cs.storagedesk.TARGET_MAX_SESSIONS">1</entry>
+
+<entry key="edu.virginia.cs.storagedesk.DISK_TYPE">3</entry>
+
+<entry key="edu.virginia.cs.storagedesk.TARGET_NAME">iqn.edu.virginia.cs.storagedesk:disk2</entry>
+
+<entry key="edu.virginia.cs.storagedesk.VOLUME_CHUNK_SIZE">102400000</entry>
+<entry key="edu.virginia.cs.storagedesk.VOLUME_NUM_COPIES">1</entry>
+
+<entry key="edu.virginia.cs.storagedesk.DEFAULT_DISK_NUM_LUNS">1</entry>
+<entry key="edu.virginia.cs.storagedesk.DEFAULT_DISK_BLOCK_SIZE">1024</entry>
+<entry key="edu.virginia.cs.storagedesk.DEFAULT_DISK_NUM_BLOCKS">100000</entry>
+
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_NUM_CHUNKS">1</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_CHUNK_SIZE">102400000</entry>
+
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_PATH">/temp</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_FILE_PREFIX">StorageDesk</entry>
+
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_HEARTBEAT_TIME">600000</entry>
+
+<entry key="edu.virginia.cs.storagedesk.ISCSISERVER_PATH">.</entry>
+<entry key="edu.virginia.cs.storagedesk.ISCSISERVER_JOURNALING">true</entry>
+
+
+<!-- MAY NOT NEEDED -->
+<entry key="edu.virginia.cs.storagedesk.DISK_WRITE_BUFFER">false</entry>
+<entry key="edu.virginia.cs.storagedesk.DISK_WRITE_BUFFER_SIZE">128</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_COUNT">1</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_FILE_NAME">/temp/StorageDesk</entry>
+<entry key="edu.virginia.cs.storagedesk.ENABLE_DATABASE">true</entry>
+
+</properties>

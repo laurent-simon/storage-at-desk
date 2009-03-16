@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="StorageDesk" default="StorageDesk" basedir="." >
+	
+	<description>
+	    simple example build file
+	</description>
+
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="lib" location="lib"/>
+	<property name="dist" location="dist"/>
+	<property name="conf" location="conf"/>
+	<property name="scripts" location="scripts"/>
+	
+	<path id="project.classpath">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="StorageDesk" depends="init, build">
+		<copy file="storage@desk.log4j.properties" tofile="${bin}/storage@desk.log4j.properties"/>
+		<copy file="storage@desk.log4j.properties" tofile="${dist}/storage@desk.log4j.properties"/>
+		<copy file="storage@desk.properties.xml" tofile="${bin}/storage@desk.properties.xml"/>
+		<copy file="storage@desk.properties.xml" tofile="${dist}/storage@desk.properties.xml"/>
+		<copy todir="${dist}/lib">
+		    <fileset dir="${lib}"/>
+		</copy>
+		<copy todir="${dist}/conf">
+			<fileset dir="${conf}"/>
+		</copy>
+		<copy file="${scripts}/wrapper.exe" tofile="${dist}/wrapper.exe"/>
+		<copy file="${scripts}/wrapper" tofile="${dist}/wrapper"/>
+		<copy todir="${dist}">
+			<fileset dir="${scripts}" includes="*.bat" />
+		</copy>
+		<copy todir="${dist}">
+			<fileset dir="${scripts}" includes="*.sh" />
+		</copy>
+	</target>
+	
+	<target name="init">
+	    <mkdir dir="${bin}" />
+		<mkdir dir="${dist}" />
+	</target>
+	
+	<target name="clean" description="clean up" >
+    	<!-- Delete the ${build} and ${dist} directory trees -->
+    	<delete dir="${bin}"/>
+    	<delete dir="${dist}"/> 
+	</target>
+	
+	<target name="build">
+	    <javac srcdir="${src}" destdir="${bin}" debug="true"> 
+	    	<classpath refid="project.classpath"></classpath>
+	    </javac>
+		<javac srcdir="${src}" destdir="${dist}" debug="false"> 
+			<classpath refid="project.classpath"></classpath>
+		</javac>
+	 </target>
+	
+	<target name="jars"	depends="storage-desk-jar, volume-controller-jar, storage-server-jar, storage-machine-jar" />
+	
+	<target name="storage-desk-jar" depends="build">
+				<jar destfile="${dist}/Storage@desk.jar" >
+					<manifest>
+						<attribute name="Main-Class" value="edu.virginia.cs.storagedesk.storageserver.StorageServer"/>
+					</manifest>
+					<fileset dir="${bin}">
+						<include name="edu/virginia/cs/storagedesk/common/**/*.class"/>
+						<include name="edu/virginia/cs/storagedesk/database/**/*.class"/>
+						<include name="edu/virginia/cs/storagedesk/storagemachine/**/*.class"/>
+						<include name="edu/virginia/cs/storagedesk/storageserver/**/*.class"/>
+						<include name="edu/virginia/cs/storagedesk/volumecontroller/**/*.class"/>
+					</fileset>
+				</jar>
+		</target>
+	
+	<target name="volume-controller-jar" depends="build">
+					<jar destfile="${dist}/VolumeController.jar" >
+						<manifest>
+							<attribute name="Main-Class" value="edu.virginia.cs.storagedesk.volumecontroller.VolumeController"/>
+							<attribute name="Class-Path" value=".;../lib/log4j-1.2.13.jar"/>
+						</manifest>
+						<fileset dir="${bin}">
+							<include name="edu/virginia/cs/storagedesk/common/**/*.class"/>
+							<include name="edu/virginia/cs/storagedesk/database/**/*.class"/>
+							<include name="edu/virginia/cs/storagedesk/volumecontroller/**/*.class"/>
+						</fileset>
+					</jar>
+			</target>
+	
+	<target name="storage-server-jar" depends="build">
+			<jar destfile="${dist}/StorageServer.jar" >
+				<manifest>
+					<attribute name="Main-Class" value="edu.virginia.cs.storagedesk.storageserver.StorageServer"/>
+				</manifest>
+				<fileset dir="${bin}">
+					<include name="edu/virginia/cs/storagedesk/common/**/*.class"/>
+					<include name="edu/virginia/cs/storagedesk/storagemachine/**/*.class"/>
+					<include name="edu/virginia/cs/storagedesk/storageserver/**/*.class"/>
+				</fileset>
+			</jar>
+	</target>
+	
+	<target name="storage-machine-jar" depends="build">
+		<jar destfile="${dist}/StorageMachine.jar">
+				<manifest>
+					<attribute name="Main-Class" value="edu.virginia.cs.storagedesk.storagemachine.StorageMachine"/>
+				</manifest>
+				<fileset dir="${bin}">
+					<include name="edu/virginia/cs/storagedesk/common/**/*.class"/>
+					<include name="edu/virginia/cs/storagedesk/storagemachine/**/*.class"/>
+				</fileset>
+			</jar>
+	</target>
+
+</project>

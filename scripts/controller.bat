@@ -1,0 +1,1 @@
+java -classpath .\lib\log4j.jar;.\lib\mysql-connector.jar;. -Djava.rmi.server.codebase=file://\Storage@desk\ edu.virginia.cs.storagedesk.volumecontroller.VolumeController
