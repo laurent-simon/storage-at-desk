@@ -70,7 +70,7 @@ public class Volume implements Externalizable {
 			logger.info(machines.size() + " machines available");
 			
 			long totalChunks = 0;
-			for (Enumeration e = machines.elements() ; e.hasMoreElements() ;) {
+			for (Enumeration<Machine> e = machines.elements() ; e.hasMoreElements() ;) {
 		        Machine m = (Machine) e.nextElement();
 		        totalChunks += m.getNumChunks();
 		    }
@@ -80,7 +80,7 @@ public class Volume implements Externalizable {
 			if (totalChunks >= this.numChunks) {
 				logger.info("Assign mappings to " + machines.size() + " machines");
 				int nc = 0;
-				for (Enumeration e = machines.elements() ; e.hasMoreElements() ;) {
+				for (Enumeration<Machine> e = machines.elements() ; e.hasMoreElements() ;) {
 			        Machine m = (Machine) e.nextElement();
 			        int availableChunks = m.getNumAvailableChunks(conn);
 			        logger.debug("Machine (" + m.getId() + ") has " + availableChunks + " chunks available");
