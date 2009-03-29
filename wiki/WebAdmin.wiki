@@ -1,0 +1,8 @@
+#summary A description of the admin interface
+
+= Introduction =
+  * Request new storage volume
+  * Storage node status
+  * Manually create replica
+  * Disk replication levels
+  * Display free-space/locations
