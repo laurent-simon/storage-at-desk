@@ -122,6 +122,7 @@ public class Machine implements Externalizable {
 		try { 
 	        stmt = conn.prepareStatement("{ call sp_machineheartbeat(?) }");
 	        stmt.setString(1, this.id);
+	        stmt.setString(2, this.ip);
 	        stmt.execute();
 	        return true;	        
         }
