@@ -15,16 +15,16 @@ public class VirtualDiskWriteBuffer implements Runnable{
 
 	public static ArrayBlockingQueue<DataBlock> queue;
 	
-	private static VirtualDisk virtualDisk;
+//	private static VirtualDisk virtualDisk;
 	
 	public VirtualDiskWriteBuffer(VirtualDisk vd) {
-		virtualDisk = vd;
+//		virtualDisk = vd;
 		queue = new ArrayBlockingQueue<DataBlock>(ISCSI.DISK_WRITE_BUFFER_SIZE, true);
 	}
 	
 	public byte[] flushBlocks(long start, long end) {
 		byte[] b = null;
-		for (Iterator i = queue.iterator(); i.hasNext();) {
+		for (Iterator<DataBlock> i = queue.iterator(); i.hasNext();) {
 			DataBlock db = (DataBlock) i.next();
 			if ((start >= db.getPosition() &&
 				 start <= db.getPosition() + db.getBytes().length) ||

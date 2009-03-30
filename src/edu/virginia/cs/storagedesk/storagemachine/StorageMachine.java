@@ -9,8 +9,6 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.tanukisoftware.wrapper.WrapperListener;
-import org.tanukisoftware.wrapper.WrapperManager;
 
 import edu.virginia.cs.storagedesk.common.FileDisk;
 import edu.virginia.cs.storagedesk.common.Config;
@@ -18,7 +16,7 @@ import edu.virginia.cs.storagedesk.common.Util;
 import edu.virginia.cs.storagedesk.database.Machine;
 import edu.virginia.cs.storagedesk.volumecontroller.IVolumeController;
 
-public class StorageMachine implements IStorageMachine, WrapperListener{ 
+public class StorageMachine implements IStorageMachine { 
 	private static Logger logger = Logger.getLogger(StorageMachine.class);
 	
 	static 
@@ -60,8 +58,6 @@ public class StorageMachine implements IStorageMachine, WrapperListener{
 		return true;
 	}
 	
-	
-	
 //	methods for read/write bytes via RMI
 	public byte[] read(int chunkID, long position, int length) throws RemoteException {
 		return chunks[chunkID].read(position, length);
@@ -71,50 +67,7 @@ public class StorageMachine implements IStorageMachine, WrapperListener{
 		return chunks[chunkID].write(bytes, position);
 	}
 	
-	public Integer start( String[] args )
-    {
-        System.out.println( "start()" );
-        
-        task();
-        
-        return null;
-    }
-    
-    public int stop( int exitCode )
-    {
-        System.out.println( "stop(" + exitCode + ")" );
-        
-        return exitCode;
-    }
-    
-    public void controlEvent( int event )
-    {
-        System.out.println( "controlEvent(" + event + ")" );
-        
-        if ( ( event == WrapperManager.WRAPPER_CTRL_LOGOFF_EVENT )
-            && WrapperManager.isLaunchedAsService() )
-        {
-            System.out.println( "  Ignoring logoff event" );
-            // Ignore
-        }
-        else
-        {
-            WrapperManager.stop( 0 );
-        }
-    }
-	
-	public static void main(String args[]) {	
-		boolean service = true;
-		
-		if (service) {
-			System.out.println( " Init..." );		
-			WrapperManager.start(new StorageMachine(), args);
-		} else {
-			task();
-		}
-	}
-	
-	private static void task() {
+	public static void main(String args[]) {
 		StorageMachine sm = new StorageMachine();
 
 		try {

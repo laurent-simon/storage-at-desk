@@ -15,7 +15,7 @@ public class TestStorageMachine {
 	try {
 	    Registry registry = LocateRegistry.getRegistry(host);
 	    IStorageMachine stub = (IStorageMachine) registry.lookup("StorageMachine");
-//	    stub.init();
+	    stub.init();
 //	    String response = stub.sayHello();
 //	    System.out.println("response: " + response);
 	} catch (Exception e) {
