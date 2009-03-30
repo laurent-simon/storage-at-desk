@@ -27,33 +27,33 @@ public class VolumeController implements IVolumeController{
 //	private TreeMap<Integer, Volume> volumes = new TreeMap<Integer, Volume>();
 	
 	public VolumeController() {
-		if (Config.ENABLE_DATABASE) {
-			try {
-				Class.forName ("com.mysql.jdbc.Driver").newInstance ();
-				conn = DriverManager.getConnection (Config.DB_URL, Config.DB_USER_NAME, Config.DB_PASSWORD);
-				if (conn == null) {
-					logger.error("NULL connection");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-		}
+
+		try {
+			Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+			conn = DriverManager.getConnection (Config.DB_URL, Config.DB_USER_NAME, Config.DB_PASSWORD);
+			if (conn == null) {
+				logger.error("NULL connection");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+
 		logger.debug("Starting the controller");
 	}
 	
 	public boolean registerMachine(Machine machine) throws RemoteException {
 		logger.info("Registering a machine");
-		if (Config.ENABLE_DATABASE) {
-			if (machine.inDatabase(conn) == false) {
-				machine.insert(conn);
-				if (machine.inDatabase(conn)) {
-					logger.debug("Machine registration finishes");
-				} else {
-					logger.error("Machine registration failed");
-					return false;
-				}
+
+		if (machine.inDatabase(conn) == false) {
+			machine.insert(conn);
+			if (machine.inDatabase(conn)) {
+				logger.debug("Machine registration finishes");
+			} else {
+				logger.error("Machine registration failed");
+				return false;
 			}
-		} 
+		}
+
 		if (machines.containsKey(machine.getId()) == false) {
 			machines.put(machine.getId(), machine);
 		}
@@ -63,26 +63,22 @@ public class VolumeController implements IVolumeController{
 	public boolean isNewVolume(Volume volume) throws RemoteException {
 		logger.info("Is this a new volume?");
 		int id = 0;
-		if (Config.ENABLE_DATABASE) {
-			id = volume.inDatabase(conn);
-			if ( id == -1) {
-				return true;
-			} else {
-				return false;
-			}
-		} 		
-		return false;
+		id = volume.inDatabase(conn);
+		if ( id == -1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 		
 	public int registerVolume(Volume volume) throws RemoteException {
 		logger.info("Registering a volume");
 		int id = 0;
-		if (Config.ENABLE_DATABASE) {
-			id = volume.inDatabase(conn);
-			if ( id == -1) {
-				id = volume.insert(conn);
-			}
-		} 
+		id = volume.inDatabase(conn);
+		if ( id == -1) {
+			id = volume.insert(conn);
+		}
+
 //		if (volumes.containsKey(new Integer(id)) == false) {
 //			volumes.put(new Integer(id), volume);
 //		}		
@@ -93,12 +89,8 @@ public class VolumeController implements IVolumeController{
 	// Evenly distributes the volume on the machines	
 	public Volume assignMapping(Volume volume) throws RemoteException {
 		logger.info("Getting a mapping for a volume");
-		if (Config.ENABLE_DATABASE) {
-			if (volume.existedMapping(conn) == false) {
-				volume.assignMapping(conn);
-			}
-		}  else {
-//			volume.setMappings(getMachines(volume));
+		if (volume.existedMapping(conn) == false) {
+			volume.assignMapping(conn);
 		}
 		return volume;
 	}
@@ -125,7 +117,7 @@ public class VolumeController implements IVolumeController{
 
 			try {
 				logger.info("Starting RMI Registry");
-				java.rmi.registry.LocateRegistry.createRegistry(1099);
+				java.rmi.registry.LocateRegistry.createRegistry(Config.SD_SOCKET_PORT);
 			} catch (Exception e) {
 				logger.info("RMI Registry Already Running");
 			}
@@ -133,7 +125,7 @@ public class VolumeController implements IVolumeController{
 			VolumeController controller = new VolumeController();
 			IVolumeController stub = (IVolumeController) UnicastRemoteObject.exportObject(controller, 0);
 						
-			Registry registry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS);
+			Registry registry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS, Config.SD_SOCKET_PORT);
 			registry.rebind("VolumeController", stub);
 			
 			logger.info("Volume Controller starts");

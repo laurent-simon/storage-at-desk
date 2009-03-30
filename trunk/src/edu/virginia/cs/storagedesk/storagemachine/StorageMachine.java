@@ -130,7 +130,7 @@ public class StorageMachine implements IStorageMachine, WrapperListener{
 			
 			try {
 				logger.info("Starting RMI Registry");
-				java.rmi.registry.LocateRegistry.createRegistry(1099);
+				java.rmi.registry.LocateRegistry.createRegistry(Config.SD_SOCKET_PORT);
 			} catch (Exception e) {
 				logger.info("RMI Registry Already Running");
 			}	
@@ -149,7 +149,7 @@ public class StorageMachine implements IStorageMachine, WrapperListener{
 			IStorageMachine stub = (IStorageMachine) UnicastRemoteObject.exportObject(sm, 0);
 			
 			// Ask the Volume Controller to register the machine
-			Registry volumeRegistry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS); 
+			Registry volumeRegistry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS, Config.SD_SOCKET_PORT); 
 			if (volumeRegistry == null) {
 				logger.error("Cannot get the controller registry");
 				return ;

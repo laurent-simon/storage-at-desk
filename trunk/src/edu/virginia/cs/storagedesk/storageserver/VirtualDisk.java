@@ -76,7 +76,7 @@ public class VirtualDisk extends Disk {
 		boolean isNewVolume = true;
 		try {
 			// Ask the Volume Controller to register the machine
-			controllerRegistry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS); // remote "128.143.67.13");
+			controllerRegistry = LocateRegistry.getRegistry(Config.VOLUMECONTROLLER_IP_ADDRESS, Config.SD_SOCKET_PORT);
 			volumeController = (IVolumeController) controllerRegistry.lookup("VolumeController");
 
 			// If this is a new volume
@@ -157,7 +157,7 @@ public class VirtualDisk extends Disk {
 				Mapping mapping = mappings[replica][i];
 				try {
 					logger.info("Getting the registry of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
-					machineRegistry.put(mapping.getMachineID(), LocateRegistry.getRegistry(mapping.getIp())); 
+					machineRegistry.put(mapping.getMachineID(), LocateRegistry.getRegistry(mapping.getIp(), Config.SD_SOCKET_PORT)); 
 					logger.info("Looking up the stub of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
 					IStorageMachine machineStub = (IStorageMachine) machineRegistry.get(mapping.getMachineID()).lookup(mapping.getMachineID());
 					logger.info("Got the stub of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
@@ -586,7 +586,7 @@ public class VirtualDisk extends Disk {
 							
 							try {
 								logger.info("Re-Getting the registry of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
-								machineRegistry.put(mapping.getMachineID(), LocateRegistry.getRegistry(mapping.getIp())); 
+								machineRegistry.put(mapping.getMachineID(), LocateRegistry.getRegistry(mapping.getIp(), Config.SD_SOCKET_PORT)); 
 								logger.info("Re-Looking up the stub of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
 								IStorageMachine machineStub = (IStorageMachine) machineRegistry.get(mapping.getMachineID()).lookup(mapping.getMachineID());
 								logger.info("Re-Got the stub of the machine (id " + mapping.getMachineID() + ") ip " + mapping.getIp());
