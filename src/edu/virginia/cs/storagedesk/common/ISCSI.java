@@ -10,7 +10,7 @@ public class ISCSI {
 	
 	public final static int VERSION 		= 0;
 	
-	public final static int PORT   			= 3260; 
+	public static int PORT   				= 3260; 
 	
 	public final static int Header_SIZE 	= 48;
 	public final static int CDB_SIZE		= 16;	// commonly used CDBs

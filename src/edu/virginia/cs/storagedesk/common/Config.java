@@ -18,12 +18,11 @@ public class Config {
 	/*
 	 * Database
 	 */
-	public static boolean ENABLE_DATABASE					= true;
-	public static final String 	DB_USER_NAME 				= "storage@desk";
-	public static final String 	DB_PASSWORD 				= "sdisgood";
-	public static final String  DB_HOST						= "queen.cs.virginia.edu";
-	public static final String	DB_NAME						= "storage@desk";
-	public static final String 	DB_URL 						= "jdbc:mysql://" + DB_HOST + "/" + DB_NAME;
+	public static String 	DB_USER_NAME 					= "storage@desk";
+	public static String 	DB_PASSWORD 					= "sdisgood";
+	public static String  	DB_HOST							= "queen.cs.virginia.edu";
+	public static String	DB_NAME							= "storage@desk";
+	public static String 	DB_URL 							= "jdbc:mysql://" + DB_HOST + "/" + DB_NAME;
 	
 	/*
 	 * Volume Controller
@@ -33,7 +32,7 @@ public class Config {
 	/*
 	 * Socket port
 	 */
-	public static int 	SD_SOCKET_PORT					= 10000;
+	public static int 	SD_SOCKET_PORT					= 1099;
 	
 	/*
 	 * Target
