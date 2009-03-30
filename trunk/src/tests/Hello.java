@@ -1,6 +1,6 @@
 package tests;
 
-
+/*****
 import org.tanukisoftware.wrapper.WrapperListener;
 import org.tanukisoftware.wrapper.WrapperManager;
 
@@ -60,7 +60,7 @@ public class Hello implements WrapperListener {
 	    
 	/**
 	 * @param args
-	 */
+	 *
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println( " Init..." );
@@ -69,3 +69,5 @@ public class Hello implements WrapperListener {
 	}
 
 }
+
+*/
