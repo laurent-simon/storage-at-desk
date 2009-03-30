@@ -16,7 +16,7 @@ public class FileDisk extends Disk {
 	static byte[] b;
 	ByteBuffer bytes = null;
 	private String fileName;
-	private NativeFile nativeFile = new NativeFile();
+//	private NativeFile nativeFile = new NativeFile();
 
 //	private static ConcurrentLinkedQueue<Work> queue = new ConcurrentLinkedQueue<Work>();
 	
@@ -53,16 +53,16 @@ public class FileDisk extends Disk {
 		logger.debug("Reading " + length + " bytes from Disk (LUN " + this.getLun() + 
 				", offset " + position + ", " + length + " bytes)");
 		try {
-			byte [] result = new byte[length];
+			// byte [] result = new byte[length];
 			bytes = ByteBuffer.allocate(length);
-			if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
+/*			if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
 				logger.debug("Windows Native File Functions");
 				result = nativeFile.read(fileName, position, length);
 				return result;
-			} else {
+			} else {  */
 				int numBytes = data.read(bytes, position);
 				logger.info("Read " + numBytes + " bytes");		
-			}
+			//}
 		} catch (IOException ex) {
 			logger.error("Read IOException happened at position " + position + ", length " + length);
 			ex.printStackTrace();
@@ -74,14 +74,14 @@ public class FileDisk extends Disk {
 		logger.info("Writing " + bytes.length + " bytes to Disk (LUN " + this.getLun() + 
 				", offset " + position + ", " + bytes.length + " bytes)");
 		try {
-			if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
+/*			if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
 				logger.debug("Windows Native File Functions");
 				nativeFile.write(fileName, bytes, position);
-			} else {
+			} else {  */
 				int numBytes = data.write(ByteBuffer.wrap(bytes), position);
 				data.force(true);
 				logger.info("Write " + numBytes + " bytes");
-			}
+			// }
 			logger.debug("Finished write "); // + count);
 		} catch (IOException ex) {
 			logger.error("Write IOException happened at position " + position);
