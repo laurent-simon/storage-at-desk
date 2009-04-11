@@ -27,7 +27,7 @@
 
 <!-- Volume Controller -->
 <entry key="edu.virginia.cs.storagedesk.DB_USER_NAME">root</entry>
-<entry key="edu.virginia.cs.storagedesk.DB_PASSWORD">password</entry>
+<entry key="edu.virginia.cs.storagedesk.DB_PASSWORD">tmoney</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_HOST">localhost</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_NAME">storage@desk</entry>
 
