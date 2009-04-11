@@ -13,5 +13,5 @@ public interface IVolumeController extends Remote {
 	
 	public boolean isNewVolume(Volume volume) throws RemoteException;
 	
-	public boolean machineHeartbeat(String id) throws RemoteException;
+	public boolean machineHeartbeat(String id, String ip) throws RemoteException;
 }

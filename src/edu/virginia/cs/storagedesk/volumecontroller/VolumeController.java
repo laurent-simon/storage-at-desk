@@ -95,8 +95,8 @@ public class VolumeController implements IVolumeController{
 		return volume;
 	}
 	
-	public boolean machineHeartbeat(String id) throws RemoteException {
-		Machine m = new Machine(id);
+	public boolean machineHeartbeat(String id, String ip) throws RemoteException {
+		Machine m = new Machine(id, ip);
 		return m.heartbeat(conn);
 	}
 		

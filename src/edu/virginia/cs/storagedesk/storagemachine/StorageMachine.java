@@ -134,7 +134,7 @@ public class StorageMachine implements IStorageMachine {
 		public void run() {
 			try {
 				while (true) {
-					volumeController.machineHeartbeat(machine.getId());
+					volumeController.machineHeartbeat(machine.getId(), machine.getIp());
 					Thread.sleep(Config.STORAGEMACHINE_HEARTBEAT_TIME);
 				}
 			} catch (InterruptedException e) {

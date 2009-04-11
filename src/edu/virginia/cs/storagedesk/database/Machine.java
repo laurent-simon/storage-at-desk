@@ -30,8 +30,9 @@ public class Machine implements Externalizable {
 		
 	}
 	
-	public Machine(String id) {
+	public Machine(String id, String ip) {
 		this.id = id;
+		this.ip = ip;
 	}
 	
 	public Machine(String id, String hostName, 
@@ -120,7 +121,7 @@ public class Machine implements Externalizable {
 		logger.debug("To update heart beat (id " + this.id +")");
 		PreparedStatement stmt = null;
 		try { 
-	        stmt = conn.prepareStatement("{ call sp_machineheartbeat(?) }");
+	        stmt = conn.prepareStatement("{ call sp_machineheartbeat(?, ?) }");
 	        stmt.setString(1, this.id);
 	        stmt.setString(2, this.ip);
 	        stmt.execute();
