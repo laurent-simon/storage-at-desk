@@ -4,7 +4,7 @@
 <comment>StorageDesk Properties</comment>
 
 <!-- General -->
-<entry key="edu.virginia.cs.storagedesk.VOLUMECONTROLLER_IP_ADDRESS">172.27.44.116</entry>
+<entry key="edu.virginia.cs.storagedesk.VOLUMECONTROLLER_IP_ADDRESS">192.168.5.32</entry>
 <entry key="edu.virginia.cs.storagedesk.SD_SOCKET_PORT">1099</entry>
 <entry key="edu.virginia.cs.storagedesk.ISCSI_PORT">3260</entry>
 
