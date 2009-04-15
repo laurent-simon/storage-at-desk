@@ -39,6 +39,31 @@ public class Volume implements Externalizable {
 		
 	}
 	
+	// calculates numChunks internally
+	public Volume(String name, int copies, 
+			long numLUNs, long numBlocks, long blockSize,
+			long chunkSize) {
+		this.name      = name;
+		this.numCopies = copies;
+		this.numLUNs   = numLUNs;
+		this.numBlocks = numBlocks;
+		this.blockSize = blockSize; 
+		this.numChunks = (int) Math.ceil((numLUNs * blockSize * numBlocks)/ (double)chunkSize);
+		this.chunkSize = chunkSize;
+		this.size      = numLUNs * numBlocks * blockSize;
+		this.mappings  = new Mapping[this.numCopies][this.numChunks];
+		for (int i = 0; i < this.numCopies; i++) {
+			for (int j = 0; j < this.numChunks; j++) {
+				mappings[i][j] = new Mapping();
+			}
+		}
+		logger.info("Volume " + this.id + " " + this.name + " " + 
+				this.numLUNs + " " + this.size + ", " + 
+				this.numChunks + " chunks of " + this.chunkSize + " bytes");
+	}
+	
+	// old, should not use
+	// numChunks should be calculated by Volume, not the caller of Volume
 	public Volume(String name, int copies, 
 				  long numLUNs, long numBlocks, long blockSize,
 				  int numChunks, long chunkSize) {
@@ -46,7 +71,7 @@ public class Volume implements Externalizable {
 		this.numCopies = copies;
 		this.numLUNs   = numLUNs;
 		this.numBlocks = numBlocks;
-		this.blockSize = blockSize;
+		this.blockSize = blockSize; 
 		this.numChunks = numChunks;
 		this.chunkSize = chunkSize;
 		this.size      = numLUNs * numBlocks * blockSize;

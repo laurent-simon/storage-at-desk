@@ -90,7 +90,9 @@ public class VolumeController implements IVolumeController{
 	public Volume assignMapping(Volume volume) throws RemoteException {
 		logger.info("Getting a mapping for a volume");
 		if (volume.existedMapping(conn) == false) {
-			volume.assignMapping(conn);
+			if (volume.assignMapping(conn) == false) {
+				throw new RemoteException("Cannot achieve mappings");
+			}
 		}
 		return volume;
 	}

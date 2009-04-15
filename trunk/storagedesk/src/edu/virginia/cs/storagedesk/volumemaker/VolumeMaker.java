@@ -1,5 +1,6 @@
 package edu.virginia.cs.storagedesk.volumemaker;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -17,27 +18,35 @@ public class VolumeMaker {
 	 */
 	public static void main(String[] args) {
 		// parse input
-		int numCopies = 2;
+		
+		// replication level
+		int numCopies = 1;
+		
+		// these values are used by ISCSI.java
+		// let the user input this stuff into the form
+		// and they should also include it in their own config
+		// for their StorageServer
+		// NOTE: numLUNs * numBlocks * blockSize = total disk size
 		long numLUNs = 1;
-		long numBlocks = 100000;
+		long numBlocks = 1000;
 		long blockSize = 1024;
-		String targetName = "iqn.edu.virginia.cs.storagedesk:disk2";
-		String ipAddress = "172.27.44.116";
+		
+		// this value should be a system wide value and probably
+		// hardcoded into Config.java
+		long volumeChunkSize = 102400000;
+		
+		String targetName = "iqn.edu.virginia.cs.storagedesk:disk3";
+		
+		// volume controller access information
+		String ipAddress = "192.168.5.32";
 		int port = 1099;
-		
-		
-		
 		
 		Volume volume = new Volume(targetName,
 				numCopies,
 				numLUNs,
 				numBlocks,
 				blockSize,
-				(int) Math.ceil((ISCSI.DEFAULT_DISK_NUM_LUNS *
-						ISCSI.DEFAULT_DISK_BLOCK_SIZE *
-						ISCSI.DEFAULT_DISK_NUM_BLOCKS)/
-						Config.VOLUME_CHUNK_SIZE),
-						Config.VOLUME_CHUNK_SIZE);
+				volumeChunkSize);
 
 		boolean isNewVolume = true;
 		try {
@@ -60,9 +69,18 @@ public class VolumeMaker {
 				System.out.println("Volume registration failed");
 				return;
 			}	
-
-			// Assign or retrieve mappings from the Volume Controller				
-			volume = volumeController.assignMapping(volume);				
+			
+			System.out.println("before mappings");
+			
+			// Assign or retrieve mappings from the Volume Controller
+			try {
+				volume = volumeController.assignMapping(volume);
+			} catch (RemoteException e) {
+				System.out.println(e.getCause());
+			}
+			
+			// not needed (exception above takes care of this
+			/*
 			Mapping[][] mappings = volume.getMappings();
 
 			if (mappings.length != numCopies) {
@@ -70,6 +88,7 @@ public class VolumeMaker {
 				System.out.println("SHOULD HAVE " + numCopies + " COPIES");
 				return;	
 			}
+			*/
 			
 		} catch (Exception e) {
 			//logger.error(Util.getStackTrace(e));
