@@ -21,10 +21,10 @@ public class StorageMachine implements IStorageMachine {
 	
 	static 
 	  {
-		 if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
-			System.loadLibrary("nativefile");
-		 	logger.debug("loaded dll");
-		 }
+		 //if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") == 0) {
+		//	System.loadLibrary("nativefile");
+		// 	logger.debug("loaded dll");
+		 //}
 	  }
 	
 //	private Registry controllerRegistry;

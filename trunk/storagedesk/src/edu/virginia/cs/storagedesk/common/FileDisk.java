@@ -38,10 +38,10 @@ public class FileDisk extends Disk {
 				logger.info("Set the file to size " + size);
 			}	
 			
-			if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") != 0) {
+			//if (System.getProperty("os.name").substring(0, 3).toLowerCase().compareTo("win") != 0) {
 				RandomAccessFile aFile = new RandomAccessFile(fileName, "rwd");
 				data = aFile.getChannel();
-			}
+			//}
 
 			logger.info("FileDisk for Chunk [" + i + "] inits");
 		} catch (Exception e) {
