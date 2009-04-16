@@ -110,7 +110,12 @@ public class VirtualDisk extends Disk {
 		jdataPath = path + File.separator + "jdata";
 
 		String versionFilename = path + File.separator + "volume.ver";
-
+		
+		// check if journal exists
+		// if not then "it's a new volume" - create journal
+		// could have problems if a journal with writes logged is deleted
+		File f = new File(versionFilename);
+		isNewVolume = !f.exists();
 		try {
 			if (isNewVolume) {
 				logger.debug("set up env for new volume");
