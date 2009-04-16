@@ -32,7 +32,7 @@ public class VolumeMaker {
 		// for their StorageServer
 		// NOTE: numLUNs * numBlocks * blockSize = total disk size
 		long numLUNs = 1;
-		long numBlocks = 1000;
+		long numBlocks = 200000;
 		long blockSize = 1024;
 		
 		// This block is used to parse command line input
@@ -63,7 +63,7 @@ public class VolumeMaker {
 		String targetName = "iqn.edu.virginia.cs.storagedesk:disk3";
 		
 		// volume controller access information
-		String ipAddress = "192.168.5.32";
+		String ipAddress = "192.168.5.5";
 		int port = 1099;
 		
 		Volume volume = new Volume(targetName,

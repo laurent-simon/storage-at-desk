@@ -212,8 +212,7 @@ public class VirtualDisk extends Disk {
 						logger.error(Util.getStackTrace(e));
 					}
 				}
-			}
-			*/
+			} */
 		}
 
 		new Thread(new Writer()).start();
@@ -443,6 +442,7 @@ public class VirtualDisk extends Disk {
 				} 	
 				
 				// create a local copy for verification
+				/*
 				byte[] portion = new byte[(int) numBytesAdjusted];
 				System.arraycopy(bytes, 
 						count,
@@ -450,13 +450,13 @@ public class VirtualDisk extends Disk {
 						0,
 						(int) numBytesAdjusted);
 				
-/*				RandomAccessFile raf = new RandomAccessFile(localFile[virtualChunk], "rw");
+				RandomAccessFile raf = new RandomAccessFile(localFile[virtualChunk], "rw");
 				raf.seek(position);
 				raf.write(portion);
 				raf.close();
 				logger.debug("Write " + numBytesAdjusted  + " bytes to the local copy");
 				// end of local copy				
-	*/			
+				*/
 				count += numBytesAdjusted;
 				numBytesLeft -= numBytesAdjusted;
 				if (numBytesLeft > 0) {
