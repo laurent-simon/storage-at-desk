@@ -51,7 +51,7 @@ public class VirtualDisk extends Disk {
 	
 	private Journal journal;
 	
-	private File[] localFile;
+	// private File[] localFile;
 	
 	// Allocate the volume by calling the Volume Controller
 	
@@ -85,6 +85,10 @@ public class VirtualDisk extends Disk {
 			// 2. create a journal directory
 			// 3. create a version file for each virtual chunk
 			isNewVolume = volumeController.isNewVolume(volume);
+			if (isNewVolume){
+				logger.error("Trying to create a new volume, use admin console instead.");
+				return;
+			}
 			volume.setId(volumeController.registerVolume(volume));
 			if (volume.getId() > -1) {
 				logger.info("Volume registration OK and id is " + volume.getId());
@@ -197,7 +201,7 @@ public class VirtualDisk extends Disk {
 				physicalChunkVersion.put(mapping.getMachineID() + "." +
 						mapping.getPhyscialChunkID(), new Version(mfilename));
 			} 
-
+/*
 			localFile = new File[mappings[replica].length];
 			for (int i = 0; i < mappings[replica].length; i++) {
 				localFile[i] = new File("local." + i + ".dat");
@@ -209,6 +213,7 @@ public class VirtualDisk extends Disk {
 					}
 				}
 			}
+			*/
 		}
 
 		new Thread(new Writer()).start();
@@ -445,13 +450,13 @@ public class VirtualDisk extends Disk {
 						0,
 						(int) numBytesAdjusted);
 				
-				RandomAccessFile raf = new RandomAccessFile(localFile[virtualChunk], "rw");
+/*				RandomAccessFile raf = new RandomAccessFile(localFile[virtualChunk], "rw");
 				raf.seek(position);
 				raf.write(portion);
 				raf.close();
 				logger.debug("Write " + numBytesAdjusted  + " bytes to the local copy");
 				// end of local copy				
-				
+	*/			
 				count += numBytesAdjusted;
 				numBytesLeft -= numBytesAdjusted;
 				if (numBytesLeft > 0) {
