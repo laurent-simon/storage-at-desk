@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import org.apache.log4j.Logger;
+
 import edu.virginia.cs.storagedesk.common.Config;
 import edu.virginia.cs.storagedesk.common.ISCSI;
 import edu.virginia.cs.storagedesk.common.Util;
@@ -12,6 +14,8 @@ import edu.virginia.cs.storagedesk.database.Volume;
 import edu.virginia.cs.storagedesk.volumecontroller.IVolumeController;
 
 public class VolumeMaker {
+	public static Logger logger = Logger.getRootLogger(); 
+
 
 	/**
 	 * @param args
@@ -30,6 +34,27 @@ public class VolumeMaker {
 		long numLUNs = 1;
 		long numBlocks = 1000;
 		long blockSize = 1024;
+		
+		// This block is used to parse command line input
+		try {
+			for( int i = 0; i < args.length; i++ ) {
+				if( args[i].equals("-numCp ") ) {
+					i++;
+					numCopies = Integer.valueOf(args[i]);
+				} else if( args[i].equals("-LUN") ) {
+					i++;
+					numLUNs = Long.valueOf(args[i]);
+				} else if( args[i].equals("-numBlocks") ) {
+					i++;
+					numBlocks = Long.valueOf(args[i]);
+				} else if( args[i].equals("-sizeBlocks") ) {
+					i++;
+					blockSize = Long.valueOf(args[i]);
+				}
+			}
+		} catch(Exception e) {
+			System.out.println("Invalid input");
+		}
 		
 		// this value should be a system wide value and probably
 		// hardcoded into Config.java
