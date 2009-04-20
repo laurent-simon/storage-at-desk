@@ -20,7 +20,7 @@
 
 <!-- Storage Machine -->
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_HEARTBEAT_TIME">600000</entry>
-<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_PATH">\temp</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_PATH">C:\temp</entry>
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_FILE_PREFIX">StorageDesk</entry>
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_NUM_CHUNKS">10</entry>
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_CHUNK_SIZE">10485760</entry>
