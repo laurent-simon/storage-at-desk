@@ -48,6 +48,9 @@ public class TargetThread implements Runnable {
 		case ISCSI.VIRTUAL_FILE_DISK:
 			session.disk = (VirtualDisk) d;
 			break;
+		case ISCSI.VIRTUAL_FILE_DISK_NJ:
+			session.disk = (VirtualDiskNJ) d;
+			break;
 			
 		default:
 			logger.error("Wrong disk type");

@@ -35,6 +35,7 @@ public class ISCSI {
 	public final static int FILE_DISK				= 1;
 	public final static int VIRTUAL_RAM_DISK		= 2;
 	public final static int VIRTUAL_FILE_DISK		= 3;
+	public final static int VIRTUAL_FILE_DISK_NJ	= 4;
 	
 	public final static int SCSI_ID_LENGTH			= 24;
 	
