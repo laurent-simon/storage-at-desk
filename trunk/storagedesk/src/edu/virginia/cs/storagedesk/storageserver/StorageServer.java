@@ -57,7 +57,10 @@ public class StorageServer {
 			logger.info("Virtual disk");
 			disk = new VirtualDisk(numCopies);
 			break;
-
+		case ISCSI.VIRTUAL_FILE_DISK_NJ:
+			logger.info("Virtual disk (non-journaled)");
+			disk = new VirtualDiskNJ(numCopies);
+			break;
 		default:
 			logger.error("Wrong disk type");
 		break;
@@ -71,6 +74,8 @@ public class StorageServer {
 		state = ISCSI.TARGET_INITIALIZING;
 		serverSocketChannel = ServerSocketChannel.open();
 		serverSocketChannel.socket().bind(new InetSocketAddress(ISCSI.PORT));
+		logger.debug("is blocking: " + serverSocketChannel.isBlocking());
+		serverSocketChannel.configureBlocking(false);
 		threadPool = Executors.newFixedThreadPool(ISCSI.TARGET_MAX_SESSIONS);
 		logger.info("Target: " + targetName);
 		state = ISCSI.TARGET_INITIALIZED;	
@@ -80,8 +85,16 @@ public class StorageServer {
 		try {
 			while (true) {
 				SocketChannel sc = serverSocketChannel.accept();
-				sc.configureBlocking(true);
-				threadPool.execute(new TargetThread(sc, state, targetName, disk, diskType));
+				if (sc == null) {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					threadPool.execute(new TargetThread(sc, state, targetName, disk, diskType));
+				}
 			}
 		} catch (IOException ex) {
 
