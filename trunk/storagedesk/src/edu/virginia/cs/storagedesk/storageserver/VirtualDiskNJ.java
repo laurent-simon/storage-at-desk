@@ -203,6 +203,10 @@ public class VirtualDiskNJ extends Disk {
 			}
 			
 			//TODO: might make this synchronized
+			if (valid.size() == 0) {
+				// if nothing is valid then just reply with trash
+				valid = invalid;
+			}
 			Iterator<Replica> validItr = valid.iterator();
 			while (validItr.hasNext()) {
 				
