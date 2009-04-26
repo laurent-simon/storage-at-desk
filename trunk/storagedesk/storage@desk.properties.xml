@@ -11,7 +11,7 @@
 <!-- Storage Server -->
 <entry key="edu.virginia.cs.storagedesk.TARGET_NAME">iqn.edu.virginia.cs.storagedesk:disk2</entry>
 <entry key="edu.virginia.cs.storagedesk.TARGET_MAX_SESSIONS">5</entry>
-<entry key="edu.virginia.cs.storagedesk.VOLUME_CHUNK_SIZE">10485760</entry>
+<entry key="edu.virginia.cs.storagedesk.VOLUME_CHUNK_SIZE">536870912</entry>
 <entry key="edu.virginia.cs.storagedesk.VOLUME_NUM_COPIES">1</entry>
 <entry key="edu.virginia.cs.storagedesk.DISK_TYPE">4</entry>
 <entry key="edu.virginia.cs.storagedesk.DEFAULT_DISK_NUM_LUNS">1</entry>
@@ -20,14 +20,14 @@
 
 <!-- Storage Machine -->
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_HEARTBEAT_TIME">600000</entry>
-<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_PATH">C:\temp</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_PATH">/temp</entry>
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_FILE_PREFIX">StorageDesk</entry>
 <entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_NUM_CHUNKS">10</entry>
-<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_CHUNK_SIZE">10485760</entry>
+<entry key="edu.virginia.cs.storagedesk.STORAGEMACHINE_CHUNK_SIZE">536870912</entry>
 
 <!-- Volume Controller -->
 <entry key="edu.virginia.cs.storagedesk.DB_USER_NAME">root</entry>
-<entry key="edu.virginia.cs.storagedesk.DB_PASSWORD">tmoney</entry>
+<entry key="edu.virginia.cs.storagedesk.DB_PASSWORD">sdisgood</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_HOST">localhost</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_NAME">storage@desk</entry>
 
