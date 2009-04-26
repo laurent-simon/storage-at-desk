@@ -35,6 +35,8 @@ public class VolumeMaker {
 		long numBlocks = 200000;
 		long blockSize = 1024;
 		
+		String targetName = "iqn.edu.virginia.cs.storagedesk:disk3";
+		
 		// This block is used to parse command line input
 		try {
 			for( int i = 0; i < args.length; i++ ) {
@@ -50,6 +52,9 @@ public class VolumeMaker {
 				} else if( args[i].equals("-sizeBlocks") ) {
 					i++;
 					blockSize = Long.valueOf(args[i]);
+				} else if( args[i].equals("-targetName") ) {
+					i++;
+					targetName = args[i];
 				}
 			}
 		} catch(Exception e) {
@@ -59,8 +64,6 @@ public class VolumeMaker {
 		// this value should be a system wide value and probably
 		// hardcoded into Config.java
 		long volumeChunkSize = 102400000;
-		
-		String targetName = "iqn.edu.virginia.cs.storagedesk:disk3";
 		
 		// volume controller access information
 		String ipAddress = "192.168.5.5";
