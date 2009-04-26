@@ -5,6 +5,9 @@
 
 Storage@Desk requires a MySQL database to hold volume information.
 
+= Requirements =
+* MySQL 5.0.3 or newer
+
 = Create The Database =
 
 Run the provided `sd.sql` as root.  This will create an empty database named `Storage@Desk` with the appropriate scheme and stored procedures.
