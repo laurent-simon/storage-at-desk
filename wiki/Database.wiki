@@ -6,7 +6,7 @@
 Storage@Desk requires a MySQL database to hold volume information.
 
 = Requirements =
-* MySQL 5.0.3 or newer
+  * MySQL 5.0.3 or newer
 
 = Create The Database =
 
