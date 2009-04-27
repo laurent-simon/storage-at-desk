@@ -40,8 +40,13 @@ include_once('_config.php');
 						exit;
 					}
 					
+					$deleteid = mysql_fetch_assoc(mysql_query("SELECT `id` FROM `volume` WHERE `name` = \"".mysql_real_escape_string($_POST["targetName"])."\""));
 					$query = sprintf( "DELETE FROM volume WHERE name = '%s';",
 						mysql_real_escape_string($_POST["targetName"])
+						);
+					$result = mysql_query($query);
+					$query = sprintf( "DELETE FROM `mapping` WHERE `volume` = '%s';",
+						$deleteid['id']
 						);
 					$result = mysql_query($query);
 				}
