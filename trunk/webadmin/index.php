@@ -31,9 +31,7 @@ include_once('_config.php');
           <ul style="margin: 10px 25px 0">
             <li>Request a new storage volume</li>
             <li>Check storage node status</li>
-            <li>Manually create a replica</li>
-            <li>Set disk replication levels</li>
-            <li>Display free-space/locations</li>
+            <li>Delete a volume</li>
           </ul>
           <br />
           <p>All of these options may be navigated too by clicking on one of the links provided in the one of the 
