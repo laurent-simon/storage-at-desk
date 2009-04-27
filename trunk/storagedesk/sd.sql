@@ -1,4 +1,4 @@
--- MySQL Administrator dump 1.4
+﻿-- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
 -- Server version	5.0.41-community-nt
@@ -72,6 +72,11 @@ CREATE TABLE `mapping` (
 
 --
 -- Definition of table `volume`
+--
+-- 'name' should be specified as a unique key, however current versions
+-- of mySQL do not allow for varchars of size 1024 to be unique keys.
+-- this is a bug in their issue tracker.  When the dbms is fixed this
+-- should be updated.  -Dave Farmer 4/26/09
 --
 
 DROP TABLE IF EXISTS `volume`;
