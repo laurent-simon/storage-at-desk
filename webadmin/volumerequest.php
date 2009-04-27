@@ -31,7 +31,9 @@ include_once('_config.php');
 					echo '<p style="color: red">Volume Request Executed - Thank You.</p>';
 					$cmd = 'java -jar volumemaker.jar -numCp ' . $_POST['numCp'] . ' -LUN ' . 
 							$_POST['LUN'] . ' -numBlocks ' . ceil($_POST['numBlocks']*1024*1024) . 
-							' -targetName ' . $_POST['targetName'];
+							' -targetName ' . $_POST['targetName'] .
+							' -ip ' . $sd['vc_ip'] .
+							' -port ' . $sd['vc_port'] ;
 					echo exec( $cmd );
 				}
 			?>

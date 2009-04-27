@@ -7,7 +7,9 @@ $sd = array(
 	scripts => '
 ',
 	endScripts => '
-'
+',
+	vc_ip => '172.27.43.63',
+	vc_port => 1099
 );
 
 //  ERROR REPORTING
