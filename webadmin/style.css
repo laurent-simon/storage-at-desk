@@ -1,0 +1,167 @@
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+	margin:0;
+	padding:0;
+	border:0;
+	font-weight:inherit;
+	font-style:inherit;
+	font-size:100%;
+	font-family:inherit;
+	vertical-align:baseline;
+}
+body {
+	line-height:1.5;
+}
+table {
+	border-collapse:separate;
+	border-spacing:0;
+}
+caption, td {
+	text-align:left;
+	font-weight:normal;
+}
+table, td, th {
+	vertical-align:middle;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content:"";
+}
+blockquote, q {
+	quotes:"" "";
+}
+a img {
+	border:none;
+}
+/* typography */
+body {
+	font-size:75%;
+	color:#222;
+	background:#f2f2f2;
+	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:normal;
+	color:#111;
+}
+h1 {
+	font-size:3em;
+	line-height:1;
+	margin-bottom:0.5em;
+}
+h2 {
+	font-size:2em;
+	margin-bottom:0.75em;
+}
+h3 {
+	font-size:1.5em;
+	line-height:1;
+	margin-bottom:1em;
+}
+h4 {
+	font-size:1.2em;
+	line-height:1.25;
+	margin-bottom:1.25em;
+}
+h5 {
+	font-size:1em;
+	font-weight:bold;
+	margin-bottom:1.5em;
+}
+h6 {
+	font-size:1em;
+	font-weight:bold;
+}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+	margin:0;
+}
+#top {
+	background-attachment: scroll;
+	background-color: #6EA5C5;
+	background-image: url(images/topbg.png);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height: 130px;
+	padding: 10px;
+	border-bottom:#808080 thin solid;
+}
+#main {
+	width:100%;
+}
+#left {
+	width:200px;
+	border:#808080 thin solid;
+	background-color:#FFF;
+	margin: 15px 13px;
+	min-height:500px;
+}
+#middle {
+	border:#808080 thin solid;
+	background-color:#FFF;
+	margin: 15px 15px 15px 0;
+	min-height:455px;
+	padding: 30px 15px 15px;
+}
+#bottom {
+}
+#nav {
+	float: right;
+	color: #FFF;
+	font-size:14px;
+}
+.dataTable {
+	border-right:#CAD0D2 thin solid;
+}
+.dataTable th {
+	border-top:#8C8F91 thin solid;
+	border-left:#8C8F91 thin solid;
+	border-bottom:#8C8F91 thin solid;
+}
+.dataTable td {
+	border-bottom:#CAD0D2 thin solid;
+	border-left:#CAD0D2 thin solid;
+}
+td.green {
+	background-color:#3CFF3C;
+}
+td.yellow {
+	background-color:#FFFF42;
+}
+td.red {
+	background-color:#FF6262;
+}
+.topTitle {
+	font-family:"Lucida Console", Monaco, monospace;
+	font-size:26px;
+	color:#FEFEFE;
+	clear:both;
+}
+#mainTable {
+	width: 100%;
+}
+.colhead {
+	color:#FFF;
+	font-size:15px;
+	font-weight:bold;
+	background-attachment: scroll;
+	background-color: #628CAA;
+	background-image: url(images/colhead.png);
+	background-repeat: repeat-x;
+	background-position: left top;
+	padding: 0 3px;
+}
+#left li, #right li {
+	list-style-type:none; 
+	padding: 5px 8px;
+	font-size:13px;
+}
+td {
+	vertical-align:top;
+}
+th {
+	background-attachment: scroll;
+	background-color: #E1E5E8;
+	background-image: url(images/thbg.png);
+	background-repeat: repeat-x;
+	background-position: left top;
+	font-size:14px;
+}
