@@ -1,5 +1,29 @@
 <?php
 include_once('_config.php');
+
+if( isset( $_POST['targetName'] ) ) {
+	//  DATABASE
+	$conn = mysql_connect($dbhost, $dbuser, $dbpassword);
+	if (!$conn) {
+		echo "Unable to connect to DB: " . mysql_error();
+		exit;
+	}
+	if (!mysql_select_db($database)) {
+		echo "Unable to select mydbname: " . mysql_error();
+		exit;
+	}
+	
+	$deleteid = mysql_fetch_assoc(mysql_query("SELECT `id` FROM `volume` WHERE `name` = \"".mysql_real_escape_string($_POST["targetName"])."\""));
+	$query = sprintf( "DELETE FROM volume WHERE name = '%s';",
+		mysql_real_escape_string($_POST["targetName"])
+		);
+	$result = mysql_query($query);
+	$query = sprintf( "DELETE FROM `mapping` WHERE `volume` = '%s';",
+		$deleteid['id']
+		);
+	$result = mysql_query($query);
+	$redir = TRUE;
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,6 +31,9 @@ include_once('_config.php');
 <?php echo $sd['styles'] ?>
 <?php echo $sd['scripts'] ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php if ($redir) { ?>
+<meta http-equiv="refresh" content="0;url=storagenodelist.php">
+<?php } ?>
 <title>Remove Volume - Storage@Desk WebAdmin</title>
 </head>
 <body>
@@ -26,31 +53,6 @@ include_once('_config.php');
         </div></td>
       <td><div id="middle">
           <h1>Delete an Existing Volume:</h1>
-          <?php
-				if( isset( $_POST['targetName'] ) ) {
-					//  DATABASE
-
-					$conn = mysql_connect($dbhost, $dbuser, $dbpassword);
-					if (!$conn) {
-						echo "Unable to connect to DB: " . mysql_error();
-						exit;
-					}
-					if (!mysql_select_db($database)) {
-						echo "Unable to select mydbname: " . mysql_error();
-						exit;
-					}
-					
-					$deleteid = mysql_fetch_assoc(mysql_query("SELECT `id` FROM `volume` WHERE `name` = \"".mysql_real_escape_string($_POST["targetName"])."\""));
-					$query = sprintf( "DELETE FROM volume WHERE name = '%s';",
-						mysql_real_escape_string($_POST["targetName"])
-						);
-					$result = mysql_query($query);
-					$query = sprintf( "DELETE FROM `mapping` WHERE `volume` = '%s';",
-						$deleteid['id']
-						);
-					$result = mysql_query($query);
-				}
-			?>
           <form name="deleteVolume" action="RemoveVolume.php" method="post">
             <label for="targetName">Target Name:</label>
             <input id="targetName" type='text' name='targetName' value='iqn.edu.virginia.cs.storagedesk:disk' size="40" /><br />
