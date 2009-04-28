@@ -4,7 +4,7 @@
 <comment>StorageDesk Properties</comment>
 
 <!-- General -->
-<entry key="edu.virginia.cs.storagedesk.VOLUMECONTROLLER_IP_ADDRESS">192.168.5.5</entry>
+<entry key="edu.virginia.cs.storagedesk.VOLUMECONTROLLER_IP_ADDRESS">172.27.43.63</entry>
 <entry key="edu.virginia.cs.storagedesk.SD_SOCKET_PORT">1099</entry>
 <entry key="edu.virginia.cs.storagedesk.ISCSI_PORT">3260</entry>
 
@@ -28,7 +28,7 @@
 <!-- Volume Controller -->
 <entry key="edu.virginia.cs.storagedesk.DB_USER_NAME">root</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_PASSWORD">sdisgood</entry>
-<entry key="edu.virginia.cs.storagedesk.DB_HOST">localhost</entry>
+<entry key="edu.virginia.cs.storagedesk.DB_HOST">199.111.199.159</entry>
 <entry key="edu.virginia.cs.storagedesk.DB_NAME">storage@desk</entry>
 
 <!-- MAY NOT NEEDED -->

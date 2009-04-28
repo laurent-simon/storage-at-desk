@@ -5,20 +5,23 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import edu.virginia.cs.storagedesk.common.Util;
 import edu.virginia.cs.storagedesk.database.Volume;
 import edu.virginia.cs.storagedesk.volumecontroller.IVolumeController;
 
 public class VolumeMaker {
-	public static Logger logger = Logger.getRootLogger(); 
-
+	private static Logger logger = Logger.getLogger(VolumeMaker.class);
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// parse input
+		// setup logging
+		System.setProperty("logfile.name", "VolumeMaker.log");
+		PropertyConfigurator.configure("storage@desk.log4j.properties");
+		logger.info("loaded logging properties");
 		
 		// replication level
 		int numCopies = 1;
@@ -77,7 +80,7 @@ public class VolumeMaker {
 				blockSize,
 				volumeChunkSize);
 
-		//boolean isNewVolume = true;
+		boolean isNewVolume = true;
 		try {
 			// Ask the Volume Controller to register the machine
 			Registry controllerRegistry = LocateRegistry.getRegistry(ipAddress, port);
@@ -88,8 +91,8 @@ public class VolumeMaker {
 			// 1. create a version file for the volume
 			// 2. create a journal directory
 			// 3. create a version file for each virtual chunk
-			// isNewVolume = volumeController.isNewVolume(volume);
-			volumeController.isNewVolume(volume);
+			isNewVolume = volumeController.isNewVolume(volume);
+			//volumeController.isNewVolume(volume);
 			volume.setId(volumeController.registerVolume(volume));
 			if (volume.getId() > -1) {
 				//logger.info("Volume registration OK and id is " + volume.getId());
