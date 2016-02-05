@@ -1,0 +1,1 @@
+A virtual storage system to exploit and manage the unused portions of existing PC storage devices and make it reliably accessible to users and applications.

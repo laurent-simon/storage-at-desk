@@ -1,0 +1,20 @@
+# Introduction #
+
+Storage@Desk requires a MySQL database to hold volume information.
+
+# Requirements #
+  * MySQL 5.0.3 or newer
+
+# Create The Database #
+
+Run the provided `sd.sql` as root.  This will create an empty database named `Storage@Desk` with the appropriate scheme and stored procedures.
+
+# Create A User #
+
+Now create a user and give them full access to the `Storage@Desk` database.  You will need
+to allow connections from this user from any address, eg `user_name@%`.
+
+# Details #
+
+  * Only the `Volume Controller` talks to the database
+  * Because of the way the `Volume Controller` is currently set up you **MUST** explicitly allow `user_name@%` and not simply the host from which the `Volume Controller` will be running on.  This should be probably be fixed.

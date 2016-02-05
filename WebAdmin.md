@@ -1,0 +1,12 @@
+# Introduction #
+  * Request new storage volume
+  * Storage node status
+  * Manually create replica
+  * Disk replication levels
+  * Display free-space/locations
+
+# Pages #
+  * Volume Request Form
+  * Storage-Node list
+  * Volume List
+  * Volume Info (list of all relevant storage-nodes and their status)
