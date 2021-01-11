@@ -1,4 +1,4 @@
-# storage-at-desk
+# Storage Desk
 
 iSCSI Distributed Storage System
 
